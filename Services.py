@@ -148,7 +148,12 @@ class DeviantArt(Source):
             soup = bs4.BeautifulSoup(html, 'html.parser')
 
             imageDiv = soup.find('div', attrs={'data-hook': 'art_stage'})
+            if imageDiv is None:
+                continue
+            
             image = imageDiv.find('img').get('src')
+            if image is None:
+                continue
 
             if '.jpg' in image:
                 fileFormat = '.jpg'
