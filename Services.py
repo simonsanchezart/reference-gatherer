@@ -46,6 +46,8 @@ class Artstation(Source):
                     imageRegex = re.compile(
                         r'(/large/|/original/)([a-zA-Z0-9\-]*)(\.\D{3})')
                     mo = imageRegex.search(src)
+                    if mo is None:
+                        continue
                     req = requests.get(src)
 
                     # second group is the name, third group is the file format
